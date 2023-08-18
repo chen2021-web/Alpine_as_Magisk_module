@@ -2,13 +2,13 @@ PKGDIR=/data/adb/modules/alpine_chroot_rootfs_package
 FSDIR=/data/adb/modules/alpine_chroot_rootfs_package/rootfs
 ui_print "Starting Extraction Progress..."
 ui_print "Checking Target is available or not...."
-if [[ ! -f ${PKGDIR}/alpine-minirootfs-3.14.0-aarch64.tar.gz ]]; then
+if [[ ! -f ${PKGDIR}/alpine-minirootfs-3.18.3-aarch64.tar.gz ]]; then
     ui_print "Package not found,please flash rootfs package first."
     exit 1
 else
     ui_print "Package available.Start extraction."
     mkdir -p ${FSDIR}
-    tar zxvf ${PKGDIR}/alpine-minirootfs-3.14.0-aarch64.tar.gz -C ${FSDIR}
+    tar zxvf ${PKGDIR}/alpine-minirootfs-3.18.3-aarch64.tar.gz -C ${FSDIR}
     if [ $? -ne 0 ]; then
         ui_print "Job failed!"
         exit 1
