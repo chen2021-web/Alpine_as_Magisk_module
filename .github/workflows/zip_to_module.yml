@@ -38,8 +38,8 @@ jobs:
         zip -r Alpine_Chroot_Extractor.zip *
         sudo cp Alpine_Chroot_Extractor.zip /home 
         cd ../Alpine_Chroot_rootfs
-        sudo zip -r Alpine_Chroot_rootfs.zip *
-        cp Alpine_Chroot_rootfs.zip /home 
+        zip -r Alpine_Chroot_rootfs.zip *
+        sudo cp Alpine_Chroot_rootfs.zip /home 
 
     - name: Upload Alpine_Chroot_rootfs.zip
       uses: actions/upload-artifact@v3
