@@ -14,3 +14,42 @@ on:
       - 'Alpine_Chroot_rootfs/**'
       - 'Alpine_Chroot_Extractor/**'
   workflow_call:
+
+
+jobs:
+  pack:
+
+    name: zip_to_module
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: install dependencies
+      run: |
+        sudo apt update
+        sudo apt install zip
+
+    - name: zip to module
+      run: |
+        sudo -i
+        cd $GITHUB_WORKSPACE
+        ls
+        cd Alpine_Chroot_Extractor
+        zip -r Alpine_Chroot_Extractor.zip *
+        cp Alpine_Chroot_Extractor.zip /home 
+        cd ../Alpine_Chroot_rootfs
+        zip -r Alpine_Chroot_rootfs.zip *
+        cp Alpine_Chroot_rootfs.zip /home 
+
+    - name: Upload Alpine_Chroot_rootfs.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: Alpine_Chroot_rootfs.zip
+        path: /home/Alpine_Chroot_rootfs.zip
+
+    - name: Upload Alpine_Chroot_Extractor.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: Alpine_Chroot_Extractor.zip
+        path: /home/Alpine_Chroot_Extractor.zip
+      
